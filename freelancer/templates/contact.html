@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>contact us</title>
+</head>
+<body>
+{# this won't be rendered #}
+{% if name == 'admin' %}
+  hello {{name|capfirst}}
+{% else %}
+  {{name|upper}} don't have permission to access .
+{% endif %}
+
+</body>
+</html>
