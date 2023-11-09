@@ -6,5 +6,6 @@ urlpatterns = [
     path('', views.main_page),
     path('contact', views.contact_page),
     path('about', views.about_page),
+    path('portfolio', views.portfolio_page),
     # Enter the app name in following syntax for this to work
 ]
