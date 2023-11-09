@@ -7,7 +7,7 @@ def main_page(request):
 
 def contact_page(request):
     person = {'name': 'admin'}
-    return render(request, template_name='contact.html', context=person)
+    return render(request, template_name='home/contact.html', context=person)
 
 def about_page(request):
     person = {'name': 'admin'}
