@@ -1,13 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>blog</title>
-</head>
-<body>
-    {% for post in posts %}
-    <a href="{% url 'post' post.id %}">{{ post.title }}</a>
-    <br/>
-    {% endfor %}
-</body>
-</html>
+{% extends 'index.html' %}
+{% block title %}Blog{% endblock %}
+
+{% block content %}
+
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        {% for post in posts %}
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            <div class="card-body">
+              <p class="card-text">
+                  <a href="{% url 'post' post.id %}">{{ post.title|title }}</a>
+              </p>
+                  {{ post.body|truncatewords:10 }}
+
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                {% if user == 'admin' %}
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                {% endif %}
+                </div>
+                <small class="text-body-secondary">{{ post.created|timesince }}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+{% endblock %}

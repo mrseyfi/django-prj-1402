@@ -1,14 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>post</title>
-</head>
-<body>
+{% extends 'index.html' %}
+{% block title %}Blog{% endblock %}
 
-    <h3>{{ posts.title }}</h3>
-    <small>{{ posts.created }}</small>
-    <p>{{ posts.body }}</p>
+{% block content %}
 
-</body>
-</html>
+<main>
+  <div class="container py-6">
+
+    <div class="p-5 mb-4 bg-body-tertiary rounded-3 jumbotron">
+      <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">{{ post.title }}</h1>
+        <p class="">{{ post.body }}</p>
+        <small>{{ post.created }}</small>
+      </div>
+    </div>
+
+    <div class="row align-items-md-stretch">
+      <div class="col-md-6">
+        <div class="h-100 p-5 text-bg-dark rounded-3">
+          <h2><a href="{% url 'post' post_l.id %}">{{ post_l.title }}</a></h2>
+          <p>{{ post_l.body|truncatewords:10 }}</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="h-100 p-5 bg-body-tertiary border rounded-3 jumbotron">
+          <h2><a href="{% url 'post' post_g.id %}">{{ post_g.title }}</a></h2>
+          <p>{{ post_g.body|truncatewords:10 }}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+{% endblock %}
