@@ -3,7 +3,7 @@ from . import views
 
 
 urlpatterns = [
-    path('post/', views.post_page),
+    path('<int:post_id>/', views.post_page, name="post"),
     path('', views.blog_page),
     # Enter the app name in following syntax for this to work
 ]

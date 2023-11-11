@@ -6,9 +6,8 @@
 </head>
 <body>
     {% for post in posts %}
-    <h3>{{ post.title }}</h3>
-    <small>{{ post.created }}</small>
-    <p>{{ post.body }}</p>
+    <a href="{% url 'post' post.id %}">{{ post.title }}</a>
+    <br/>
     {% endfor %}
 </body>
 </html>
