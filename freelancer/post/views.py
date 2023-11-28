@@ -1,6 +1,8 @@
+from datetime import datetime
 from django.shortcuts import render, redirect
 from .models import Post
 from django.contrib import messages
+from .forms import PostForm
 
 
 def post_page(request, post_id):
@@ -23,8 +25,37 @@ def delete(request, post_id):
 
 
 def edit(request, post_id):
-    data = Post.objects.get(id=post_id).delete()
-    return redirect('home')
+    data = Post.objects.get(id=post_id)
+    if request.method == "POST":
+        form = PostForm(request.POST, instance=data)
+        if form.is_valid():
+            form.save()
+            # cd = form.cleaned_data
+            # (Post.objects.filter(id=post_id).update
+            #                     (title=cd['title'],
+            #                      body=cd['body'],
+            #                      ))
+            messages.success(request, 'Thank you! Your post has been successfully saved.')
+            return redirect('blog')
+    else:
+        form = PostForm(instance=data)
+    return render(request, 'post/edit.html', {'form': form})
+
+
+def new(request):
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # cd = form.cleaned_data
+            # (Post.objects.create(title=cd['title'],
+            #                      body=cd['body']
+            #                      ))
+            messages.success(request, 'Thank you! Your post has been successfully saved.')
+            return redirect('blog')
+    else:
+        form = PostForm()
+    return render(request, 'post/edit.html', {'form': form})
 
 
 def blog_page(request):

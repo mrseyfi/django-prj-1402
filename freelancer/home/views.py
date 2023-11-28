@@ -4,6 +4,7 @@ from .forms import ContactForm
 from .models import Contact
 from django.contrib import messages
 
+
 def main_page(request):
     return render(request, template_name='home/main.html')
 

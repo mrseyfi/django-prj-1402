@@ -26,9 +26,9 @@
     </head>
     <body id="page-top">
         {% include 'inc/navbar.html' %}
-
         <section class="page-section portfolio" id="content">
             <div class="container">
+                {% include 'messages.html' %}
                 {% block content %}{% endblock %}
             </div>
         </section>

@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+{% block title %}Blog{% endblock %}
+
+{% block content %}
+
+<main>
+  <div class="container py-6">
+
+    <div class="p-5 mb-4 bg-body-tertiary rounded-3 jumbotron">
+      <div class="container-fluid py-5">
+        <form action="" id="postForm" method="post" novalidate>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="btn btn-danger btn-l "  type="submit" value="Save" >
+            {% if form.instance.title %}
+            <a class="btn btn-warning btn-l " href="{% url 'newPost' %}">New</a>
+            {% endif %}
+            <a class="btn btn-primary btn-l " href="{% url 'blog' %}">Cancel</a>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+{% endblock %}
