@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('home.urls')),
     path('blog/', include('post.urls')),
+    path('accounts/', include('accounts.urls')),
     # Enter the app name in following syntax for this to work
 ]
